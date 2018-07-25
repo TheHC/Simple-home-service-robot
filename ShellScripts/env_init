@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export HOME_WORLD=/home/workspace/ros_catkin_ws/src/Simple-home-service-robot/Worlds/home.world
+
