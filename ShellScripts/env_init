@@ -2,3 +2,9 @@
 
 export HOME_WORLD=/home/workspace/ros_catkin_ws/src/Simple-home-service-robot/Worlds/home.world
 
+
+#Define alias to define shortcuts for commands 
+
+alias make_setup="cd /home/workspace/ros_catkin_ws && catkin_make && source devel/setup.bash"
+
+
