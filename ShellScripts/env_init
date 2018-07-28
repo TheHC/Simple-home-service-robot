@@ -2,6 +2,7 @@
 
 export HOME_WORLD=/home/workspace/ros_catkin_ws/src/Simple-home-service-robot/Worlds/home.world
 export HCH_WORLD=/home/workspace/ros_catkin_ws/src/Simple-home-service-robot/Worlds/HCH.world
+export UGLY_W_WORLD=/home/workspace/ros_catkin_ws/src/Simple-home-service-robot/Worlds/UGLY_W.world
 
 #Define alias to define shortcuts for commands 
 

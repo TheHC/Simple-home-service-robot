@@ -207,7 +207,7 @@ void SlamGMapping::init()
   if(!private_nh_.getParam("ogain", ogain_))
     ogain_ = 3.0;
   if(!private_nh_.getParam("lskip", lskip_))
-    lskip_ = 0;
+    lskip_ =10;
   if(!private_nh_.getParam("srr", srr_))
     srr_ = 0.1;
   if(!private_nh_.getParam("srt", srt_))
@@ -217,31 +217,31 @@ void SlamGMapping::init()
   if(!private_nh_.getParam("stt", stt_))
     stt_ = 0.2;
   if(!private_nh_.getParam("linearUpdate", linearUpdate_))
-    linearUpdate_ = 1.0;
+    linearUpdate_ = 0.1;
   if(!private_nh_.getParam("angularUpdate", angularUpdate_))
-    angularUpdate_ = 0.5;
+    angularUpdate_ = 0.1;
   if(!private_nh_.getParam("temporalUpdate", temporalUpdate_))
     temporalUpdate_ = -1.0;
   if(!private_nh_.getParam("resampleThreshold", resampleThreshold_))
-    resampleThreshold_ = 0.5;
+    resampleThreshold_ = 3;
   if(!private_nh_.getParam("particles", particles_))
-    particles_ = 30;
+    particles_ = 50;
   if(!private_nh_.getParam("xmin", xmin_))
-    xmin_ = -100.0;
+    xmin_ = -1.0;
   if(!private_nh_.getParam("ymin", ymin_))
-    ymin_ = -100.0;
+    ymin_ = -1.0;
   if(!private_nh_.getParam("xmax", xmax_))
-    xmax_ = 100.0;
+    xmax_ = 1.0;
   if(!private_nh_.getParam("ymax", ymax_))
-    ymax_ = 100.0;
+    ymax_ = 1.0;
   if(!private_nh_.getParam("delta", delta_))
     delta_ = 0.05;
   if(!private_nh_.getParam("occ_thresh", occ_thresh_))
     occ_thresh_ = 0.25;
   if(!private_nh_.getParam("llsamplerange", llsamplerange_))
-    llsamplerange_ = 0.01;
+    llsamplerange_ = 0.001;
   if(!private_nh_.getParam("llsamplestep", llsamplestep_))
-    llsamplestep_ = 0.01;
+    llsamplestep_ = 0.001;
   if(!private_nh_.getParam("lasamplerange", lasamplerange_))
     lasamplerange_ = 0.005;
   if(!private_nh_.getParam("lasamplestep", lasamplestep_))
