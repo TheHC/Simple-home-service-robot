@@ -207,7 +207,7 @@ void SlamGMapping::init()
   if(!private_nh_.getParam("ogain", ogain_))
     ogain_ = 3.0;
   if(!private_nh_.getParam("lskip", lskip_))
-    lskip_ =10;
+    lskip_ =7;
   if(!private_nh_.getParam("srr", srr_))
     srr_ = 0.1;
   if(!private_nh_.getParam("srt", srt_))
@@ -243,9 +243,9 @@ void SlamGMapping::init()
   if(!private_nh_.getParam("llsamplestep", llsamplestep_))
     llsamplestep_ = 0.001;
   if(!private_nh_.getParam("lasamplerange", lasamplerange_))
-    lasamplerange_ = 0.005;
+    lasamplerange_ = 0.0005;
   if(!private_nh_.getParam("lasamplestep", lasamplestep_))
-    lasamplestep_ = 0.005;
+    lasamplestep_ = 0.0005;
     
   if(!private_nh_.getParam("tf_delay", tf_delay_))
     tf_delay_ = transform_publish_period_;
