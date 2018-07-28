@@ -20,6 +20,9 @@ geometry_msgs::Twist motor_command;
 void laser_callback(const sensor_msgs::LaserScan::ConstPtr& scan_msg)
 {
     std::cout<<"called back"<<std::endl;
+    motor_command.angular.z=-0.3; 
+    motor_command.linear.x=0.7;
+    motor_command_publisher.publish(motor_command);
 }
 
 int main(int argc, char** argv)
@@ -31,10 +34,10 @@ int main(int argc, char** argv)
     ros::NodeHandle n;
 
     // Inform ROS master that we will be publishing a message of type geometry_msgs::Twist on the robot actuation topic with a publishing queue size of 100
-    motor_command_publisher = n.advertise<geometry_msgs::Twist>("/robotactuate", 100);
+    motor_command_publisher = n.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 100);
 
     // Subscribe to the /scan topic and call the laser_callback function
-    laser_subscriber = n.subscribe("/laserscan", 1000, laser_callback);
+    laser_subscriber = n.subscribe("/scan", 1000, laser_callback);
 
     // Enter an infinite loop where the laser_callback function will be called when new laser messages arrive
     ros::Duration time_between_ros_wakeups(0.001);
