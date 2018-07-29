@@ -10,6 +10,7 @@ project(pick_objects)
 find_package(catkin REQUIRED COMPONENTS
   actionlib
   move_base_msgs
+  std_msgs
   roscpp
 )
 

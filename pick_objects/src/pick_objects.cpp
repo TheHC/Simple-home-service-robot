@@ -1,14 +1,18 @@
 #include <ros/ros.h>
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
+#include <std_msgs/Bool.h>
 
 // Define a client for to send goal requests to the move_base server through a SimpleActionClient
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
+std_msgs::Bool msg; // to send position to the add_marker node 
 
 int main(int argc, char** argv){
   // Initialize the simple_navigation_goals node
   ros::init(argc, argv, "pick_objects");
 
+  ros::NodeHandle n;
+  ros::Publisher chatter=n.advertise<std_msgs::Bool>("Pick_or_Drop",1000);// define topic where to send to the add_marker node the position
   //tell the action client that we want to spin a thread by default
   MoveBaseClient ac("move_base", true);
 
@@ -35,10 +39,12 @@ int main(int argc, char** argv){
 
   // Wait an infinite time for the results
   ac.waitForResult();
-
+   
   // Check if the robot reached its goal
   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
     {ROS_INFO("Reached pickup destination");
+     msg.data=true;
+     chatter.publish(msg);
      ros::Duration(5).sleep();
 	}
   else
@@ -59,6 +65,8 @@ int main(int argc, char** argv){
   // Check if the robot reached its goal
   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
     {ROS_INFO("Reached drop_off destination");
+     msg.data=false;
+     chatter.publish(msg);
      ros::Duration(5).sleep();
 	}
   else
