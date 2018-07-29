@@ -7,12 +7,12 @@ int main( int argc, char** argv )
   ros::NodeHandle n;
   ros::Rate r(1);
   ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
- 
+  
+
   // Set our initial shape type to be a cube
    uint32_t shape = visualization_msgs::Marker::SPHERE;
 
-  while (ros::ok())
-  {
+  
    visualization_msgs::Marker marker;
    // Set the frame ID and timestamp.  See the TF tutorials for information on these.
     marker.header.frame_id = "/map";
@@ -39,17 +39,17 @@ int main( int argc, char** argv )
     marker.pose.orientation.w = 1.0;
  
     // Set the scale of the marker -- 1x1x1 here means 1m on a side
-    marker.scale.x = 1.0;
-    marker.scale.y = 1.0;
-    marker.scale.z = 1.0;
+    marker.scale.x = 0.5;
+    marker.scale.y = 0.5;
+    marker.scale.z = 0.5;
  
     // Set the color -- be sure to set alpha to something non-zero!
     marker.color.r = 0.0f;
     marker.color.g = 1.0f;
     marker.color.b = 0.0f;
     marker.color.a = 1.0;
- 
-    marker.lifetime = ros::Duration(5);
+    ros::Duration(0.5).sleep();
+    
 
     // Publish the marker
     while (marker_pub.getNumSubscribers() < 1)
@@ -63,6 +63,14 @@ int main( int argc, char** argv )
      }
      marker_pub.publish(marker);
      ros::Duration(5).sleep();
+     marker.color.a = 0.0;
+     marker.action = visualization_msgs::Marker::ADD;	
+     marker_pub.publish(marker);
+     ROS_WARN_ONCE("deleting");
+     ros::Duration(5).sleep();
+   
+  
+
     // Set the pose of the marker : at drop_off destination
     marker.pose.position.x = 5.3512;
     marker.pose.position.y = -0.61;
@@ -73,33 +81,25 @@ int main( int argc, char** argv )
     marker.pose.orientation.w = 1.0;
  
     // Set the scale of the marker -- 1x1x1 here means 1m on a side
-    marker.scale.x = 1.0;
-    marker.scale.y = 1.0;
-    marker.scale.z = 1.0;
+    marker.scale.x = 0.5;
+    marker.scale.y = 0.5;
+    marker.scale.z = 0.5;
  
     // Set the color -- be sure to set alpha to something non-zero!
     marker.color.r = 0.0f;
     marker.color.g = 1.0f;
     marker.color.b = 0.0f;
     marker.color.a = 1.0;
- 
+   marker.action = visualization_msgs::Marker::ADD;
+  marker_pub.publish(marker);
     marker.lifetime = ros::Duration(5);
 
-    // Publish the marker
-    while (marker_pub.getNumSubscribers() < 1)
-    {
-      if (!ros::ok())
-       {
-        return 0;
-      }
-      ROS_WARN_ONCE("Please create a subscriber to the marker");
-      sleep(1);
-     }
-     marker_pub.publish(marker);
+  
+     
  
  
      
  
      r.sleep();
-   }
+   
  }
