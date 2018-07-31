@@ -19,7 +19,7 @@ More documentation on wstool can be found at http://wiki.ros.org/wstool.
 Run the script env_init to set export some project specific path variables and prepare the environnement;
 The final simulation can be seen by running the script home_service.sh.
 
-#Todos
+# Todos
 
     -Add more details on the README
     -Add the possibility to choose a different world for the simulation 
